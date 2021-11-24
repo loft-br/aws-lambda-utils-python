@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 from typing import Dict, List
+from . import BaseOptionalDataClass
 
 
 @dataclass
-class APIGatewayCustomAuthorizerContext:
+class APIGatewayCustomAuthorizerContext(BaseOptionalDataClass):
     principalId: str
     stringKey: str
     numKey: int
@@ -12,13 +13,13 @@ class APIGatewayCustomAuthorizerContext:
 
 
 @dataclass
-class ClientCertValidity:
+class ClientCertValidity(BaseOptionalDataClass):
     NotBefore: str
     NotAfter: str
 
 
 @dataclass
-class ProxyRequestClientCert:
+class ProxyRequestClientCert(BaseOptionalDataClass):
     ClientCertPem: str
     SubjectDN: str
     IssuerDN: str
@@ -27,7 +28,7 @@ class ProxyRequestClientCert:
 
 
 @dataclass
-class RequestIdentity:
+class RequestIdentity(BaseOptionalDataClass):
     CognitoIdentityPoolId: str
     AccountId: str
     CognitoIdentityId: str
@@ -45,7 +46,7 @@ class RequestIdentity:
 
 
 @dataclass
-class ProxyRequestContext:
+class ProxyRequestContext(BaseOptionalDataClass):
     Path: str
     AccountId: str
     ResourceId: str
@@ -74,7 +75,7 @@ class ProxyRequestContext:
 
 
 @dataclass
-class APIGatewayProxyRequest:
+class APIGatewayProxyRequest(BaseOptionalDataClass):
     Resource: str
     Path: str
     HttpMethod: str

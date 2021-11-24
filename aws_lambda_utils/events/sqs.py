@@ -1,22 +1,23 @@
 from dataclasses import dataclass
 from typing import Dict, List
 from mypy_boto3_sqs.type_defs import MessageAttributeValueTypeDef
+from . import BaseOptionalDataClass
 
 
 @dataclass
-class SQSRecord:
-    MessageId: str
-    ReceiptHandle: str
-    Body: str
-    Md5OfBody: str
-    Md5OfMessageAttributes: str
-    EventSourceArn: str
-    EventSource: str
-    AwsRegion: str
-    Attributes: Dict[str, str]
-    MessageAttributes: Dict[str, MessageAttributeValueTypeDef]
+class SQSRecord(BaseOptionalDataClass):
+    messageId: str
+    receiptHandle: str
+    body: str
+    md5OfBody: str
+    md5OfMessageAttributes: str
+    eventSourceArn: str
+    eventSource: str
+    awsRegion: str
+    attributes: Dict[str, str]
+    messageAttributes: Dict[str, MessageAttributeValueTypeDef]
 
 
 @dataclass
-class SQSEvent:
+class SQSEvent(BaseOptionalDataClass):
     Records: List[SQSRecord]

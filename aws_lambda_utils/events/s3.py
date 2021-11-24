@@ -1,63 +1,56 @@
-from dataclasses import dataclass
-from typing import Dict
+from pydantic.dataclasses import dataclass
+from typing import Dict, List
+from datetime import datetime
+from . import BaseOptionalDataClass
 
 
 @dataclass
-class ConfigurationType:
-    AccessPointArn: str
-    SupportingAccessPointArn: str
-    Payload: str
+class UserIdentityType(BaseOptionalDataClass):
+    type: str
+    principalId: str
+    arn: str
+    accountId: str
+    accessKeyId: str
+    sessionContext: Dict[str, str]
 
 
 @dataclass
-class GetObjectContextType:
-    InputS3Url: str
-    OutputRoute: str
-    OutputToken: str
+class S3BucketData(BaseOptionalDataClass):
+    name: str
+    ownerIdentity: Dict[str, str]
+    arn: str
 
 
 @dataclass
-class SessionContextAttributesType:
-    MfaAuthenticated: str
-    CreationDate: str
+class S3ObjectData(BaseOptionalDataClass):
+    key: str
+    size: int
+    eTag: str
+    versionId: str
+    sequencer: str
 
 
 @dataclass
-class SessionIssuerType:
-    Type: str
-    PrincipalId: str
-    Arn: str
-    AccountId: str
-    UserName: str
+class S3Data(BaseOptionalDataClass):
+    s3SchemaVersion: str
+    configurationId: str
+    bucket: S3BucketData
+    object: S3ObjectData
 
 
 @dataclass
-class SessionContextType:
-    Attributes: SessionContextAttributesType
-    SessionIssuer: SessionIssuerType
+class S3Records(BaseOptionalDataClass):
+    eventVersion: str
+    eventSource: str
+    awsRegion: str
+    eventTime: datetime
+    eventName: str
+    userIdentity: UserIdentityType
+    requestParameters: Dict[str, str]
+    responseElements: Dict[str, str]
+    s3: S3Data
 
 
 @dataclass
-class UserIdentityType:
-    Type: str
-    PrincipalId: str
-    Arn: str
-    AccountId: str
-    AccessKeyId: str
-    SessionContext: SessionContextType
-
-
-@dataclass
-class UserRequestType:
-    Url: str
-    Headers: Dict[str, str]
-
-
-@dataclass
-class S3ObjectLambdaEvent:
-    XAmzRequestId: str
-    GetObjectContext: GetObjectContextType
-    Configuration: ConfigurationType
-    UserRequest: UserRequestType
-    UserIdentity: UserIdentityType
-    ProtocolVersion: str
+class S3ObjectLambdaEvent(BaseOptionalDataClass):
+    Records: List[S3Records]

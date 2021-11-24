@@ -2,10 +2,11 @@ from dataclasses import dataclass
 from typing import Dict, List
 from .common import MessageAttribute
 from datetime import datetime
+from . import BaseOptionalDataClass
 
 
 @dataclass
-class SNSMessage:
+class SNSMessage(BaseOptionalDataClass):
     Message: str
     MessageAttributes: Dict[str, MessageAttribute]
     MessageId: str
@@ -20,7 +21,7 @@ class SNSMessage:
 
 
 @dataclass
-class SNSRecord:
+class SNSRecord(BaseOptionalDataClass):
     EventSource: str
     EventSubscriptionArn: str
     EventVersion: str
@@ -28,5 +29,5 @@ class SNSRecord:
 
 
 @dataclass
-class SNSEvent:
+class SNSEvent(BaseOptionalDataClass):
     Records: List[SNSRecord]
