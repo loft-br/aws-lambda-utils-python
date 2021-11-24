@@ -3,6 +3,7 @@ name = "aws-lambda-utils-python"
 version = "0.1.0"
 description = ""
 authors = ["nichmorgan-loft <nich.morgan@loft.com.br>"]
+packages = [{ include = "aws_lambda_utils" }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
