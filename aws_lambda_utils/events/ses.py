@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 from datetime import datetime
-from . import BaseOptionalDataClass
+from aws_lambda_utils import BaseOptionalDataClass
 
 
 @dataclass

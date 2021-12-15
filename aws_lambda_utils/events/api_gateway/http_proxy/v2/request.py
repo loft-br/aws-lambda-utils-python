@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import Dict, List, Sequence
-from . import BaseOptionalDataClass
+from aws_lambda_utils import BaseOptionalDataClass
 
 
 @dataclass

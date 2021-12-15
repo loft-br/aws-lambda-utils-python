@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict, List
 from mypy_boto3_sqs.type_defs import MessageAttributeValueTypeDef
-from . import BaseOptionalDataClass
+from aws_lambda_utils import BaseOptionalDataClass
 
 
 @dataclass

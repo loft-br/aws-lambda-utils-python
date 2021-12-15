@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Dict, List
 from .common import MessageAttribute
 from datetime import datetime
-from . import BaseOptionalDataClass
+from aws_lambda_utils import BaseOptionalDataClass
 
 
 @dataclass
