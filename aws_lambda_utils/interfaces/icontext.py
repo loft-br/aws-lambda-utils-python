@@ -1,16 +1,17 @@
 from abc import ABC, abstractmethod
 from typing import Dict
 from dataclasses import dataclass
+from aws_lambda_utils import BaseOptionalDataClass
 
 
 @dataclass
-class Identity:
+class Identity(BaseOptionalDataClass):
     cognito_identity_id: str
     cognito_identity_pool_id: str
 
 
 @dataclass
-class Client:
+class Client(BaseOptionalDataClass):
     installation_id: str
     app_title: str
     app_version_name: str
@@ -21,12 +22,12 @@ class Client:
 
 
 @dataclass
-class ClientContext:
+class ClientContext(BaseOptionalDataClass):
     client: Client
 
 
 @dataclass
-class IContextData:
+class IContextData(BaseOptionalDataClass):
     function_name: str
     function_version: str
     invoked_function_arn: str

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 from datetime import datetime
+from aws_lambda_utils import BaseOptionalDataClass
 
 
 @dataclass
@@ -9,7 +10,7 @@ class SimpleEmailVerdict:
 
 
 @dataclass
-class SimpleEmailCommonHeaders:
+class SimpleEmailCommonHeaders(BaseOptionalDataClass):
     From: List[str]
     To: List[str]
     ReturnPath: str
@@ -19,18 +20,18 @@ class SimpleEmailCommonHeaders:
 
 
 @dataclass
-class SimpleEmailHeader:
+class SimpleEmailHeader(BaseOptionalDataClass):
     Name: str
     Value: str
 
 
 @dataclass
-class ReceiptAction:
+class ReceiptAction(BaseOptionalDataClass):
     Type: str
 
 
 @dataclass
-class SimpleEmailReceipt:
+class SimpleEmailReceipt(BaseOptionalDataClass):
     Recipients: List[str]
     Timestamp: datetime
     SpamVerdict: SimpleEmailVerdict
@@ -43,7 +44,7 @@ class SimpleEmailReceipt:
 
 
 @dataclass
-class SimpleEmailMessage:
+class SimpleEmailMessage(BaseOptionalDataClass):
     CommonHeaders: SimpleEmailCommonHeaders
     Source: str
     Timestamp: datetime
@@ -54,18 +55,18 @@ class SimpleEmailMessage:
 
 
 @dataclass
-class SimpleEmailService:
+class SimpleEmailService(BaseOptionalDataClass):
     Mail: SimpleEmailMessage
     Receipt: SimpleEmailReceipt
 
 
 @dataclass
-class SimpleEmailRecord:
+class SimpleEmailRecord(BaseOptionalDataClass):
     EventVersion: str
     EventSource: str
     Ses: SimpleEmailService
 
 
 @dataclass
-class SimpleEmailEvent:
+class SimpleEmailEvent(BaseOptionalDataClass):
     Records: List[SimpleEmailRecord]

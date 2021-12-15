@@ -1,22 +1,23 @@
 from dataclasses import dataclass
 from typing import Dict, List, Sequence
+from aws_lambda_utils import BaseOptionalDataClass
 
 
 @dataclass
-class JwtDescription:
+class JwtDescription(BaseOptionalDataClass):
     Claims: Dict[str, str]
     Scopes: Sequence[str]
 
 
 @dataclass
-class CognitoIdentityDescription:
+class CognitoIdentityDescription(BaseOptionalDataClass):
     AMR: List[str]
     IdentityId: str
     IdentityPoolId: str
 
 
 @dataclass
-class IAMDescription:
+class IAMDescription(BaseOptionalDataClass):
     AccessKey: str
     AccountId: str
     CallerId: str
@@ -27,14 +28,14 @@ class IAMDescription:
 
 
 @dataclass
-class AuthorizerDescription:
+class AuthorizerDescription(BaseOptionalDataClass):
     Jwt: JwtDescription
     Lambda: Dict[str, str]
     IAM: IAMDescription
 
 
 @dataclass
-class HttpDescription:
+class HttpDescription(BaseOptionalDataClass):
     Method: str
     Path: str
     Protocol: str
@@ -43,13 +44,13 @@ class HttpDescription:
 
 
 @dataclass
-class ClientCertValidity:
+class ClientCertValidity(BaseOptionalDataClass):
     NotBefore: str
     NotAfter: str
 
 
 @dataclass
-class ProxyRequestClientCert:
+class ProxyRequestClientCert(BaseOptionalDataClass):
     ClientCertPem: str
     SubjectDN: str
     IssuerDN: str
@@ -58,12 +59,12 @@ class ProxyRequestClientCert:
 
 
 @dataclass
-class ProxyRequestAuthentication:
+class ProxyRequestAuthentication(BaseOptionalDataClass):
     ClientCert: ProxyRequestClientCert
 
 
 @dataclass
-class ProxyRequestContext:
+class ProxyRequestContext(BaseOptionalDataClass):
     AccountId: str
     ApiId: str
     Authorizer: AuthorizerDescription
@@ -80,7 +81,7 @@ class ProxyRequestContext:
 
 
 @dataclass
-class APIGatewayHttpApiV2ProxyRequest:
+class APIGatewayHttpApiV2ProxyRequest(BaseOptionalDataClass):
     Version: str
     RouteKey: str
     RawPath: str
