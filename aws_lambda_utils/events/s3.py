@@ -1,11 +1,9 @@
-from pydantic.dataclasses import dataclass
 from typing import Dict, List
 from datetime import datetime
-from aws_lambda_utils import BaseOptionalDataClass
+from aws_lambda_utils import BaseModelOptionalFields
 
 
-@dataclass
-class UserIdentityType(BaseOptionalDataClass):
+class UserIdentityType(BaseModelOptionalFields):
     type: str
     principalId: str
     arn: str
@@ -14,15 +12,13 @@ class UserIdentityType(BaseOptionalDataClass):
     sessionContext: Dict[str, str]
 
 
-@dataclass
-class S3BucketData(BaseOptionalDataClass):
+class S3BucketData(BaseModelOptionalFields):
     name: str
     ownerIdentity: Dict[str, str]
     arn: str
 
 
-@dataclass
-class S3ObjectData(BaseOptionalDataClass):
+class S3ObjectData(BaseModelOptionalFields):
     key: str
     size: int
     eTag: str
@@ -30,16 +26,14 @@ class S3ObjectData(BaseOptionalDataClass):
     sequencer: str
 
 
-@dataclass
-class S3Data(BaseOptionalDataClass):
+class S3Data(BaseModelOptionalFields):
     s3SchemaVersion: str
     configurationId: str
     bucket: S3BucketData
     object: S3ObjectData
 
 
-@dataclass
-class S3Records(BaseOptionalDataClass):
+class S3Records(BaseModelOptionalFields):
     eventVersion: str
     eventSource: str
     awsRegion: str
@@ -51,6 +45,5 @@ class S3Records(BaseOptionalDataClass):
     s3: S3Data
 
 
-@dataclass
-class S3ObjectLambdaEvent(BaseOptionalDataClass):
+class S3ObjectLambdaEvent(BaseModelOptionalFields):
     Records: List[S3Records]

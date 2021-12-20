@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from typing import Dict, List
-from aws_lambda_utils import BaseOptionalDataClass
+from aws_lambda_utils import BaseModelOptionalFields
 
 
 @dataclass
-class APIGatewayCustomAuthorizerContext(BaseOptionalDataClass):
+class APIGatewayCustomAuthorizerContext(BaseModelOptionalFields):
     principalId: str
     stringKey: str
     numKey: int
@@ -13,13 +13,13 @@ class APIGatewayCustomAuthorizerContext(BaseOptionalDataClass):
 
 
 @dataclass
-class ClientCertValidity(BaseOptionalDataClass):
+class ClientCertValidity(BaseModelOptionalFields):
     NotBefore: str
     NotAfter: str
 
 
 @dataclass
-class ProxyRequestClientCert(BaseOptionalDataClass):
+class ProxyRequestClientCert(BaseModelOptionalFields):
     ClientCertPem: str
     SubjectDN: str
     IssuerDN: str
@@ -28,7 +28,7 @@ class ProxyRequestClientCert(BaseOptionalDataClass):
 
 
 @dataclass
-class RequestIdentity(BaseOptionalDataClass):
+class RequestIdentity(BaseModelOptionalFields):
     CognitoIdentityPoolId: str
     AccountId: str
     CognitoIdentityId: str
@@ -46,7 +46,7 @@ class RequestIdentity(BaseOptionalDataClass):
 
 
 @dataclass
-class ProxyRequestContext(BaseOptionalDataClass):
+class ProxyRequestContext(BaseModelOptionalFields):
     Path: str
     AccountId: str
     ResourceId: str
@@ -75,7 +75,7 @@ class ProxyRequestContext(BaseOptionalDataClass):
 
 
 @dataclass
-class APIGatewayProxyRequest(BaseOptionalDataClass):
+class APIGatewayProxyRequest(BaseModelOptionalFields):
     Resource: str
     Path: str
     HttpMethod: str

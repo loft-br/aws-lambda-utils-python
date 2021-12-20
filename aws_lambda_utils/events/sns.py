@@ -1,12 +1,10 @@
-from dataclasses import dataclass
 from typing import Dict, List
 from .common import MessageAttribute
 from datetime import datetime
-from aws_lambda_utils import BaseOptionalDataClass
+from aws_lambda_utils import BaseModelOptionalFields
 
 
-@dataclass
-class SNSMessage(BaseOptionalDataClass):
+class SNSMessage(BaseModelOptionalFields):
     Message: str
     MessageAttributes: Dict[str, MessageAttribute]
     MessageId: str
@@ -20,14 +18,12 @@ class SNSMessage(BaseOptionalDataClass):
     UnsubscribeUrl: str
 
 
-@dataclass
-class SNSRecord(BaseOptionalDataClass):
+class SNSRecord(BaseModelOptionalFields):
     EventSource: str
     EventSubscriptionArn: str
     EventVersion: str
     Sns: SNSMessage
 
 
-@dataclass
-class SNSEvent(BaseOptionalDataClass):
+class SNSEvent(BaseModelOptionalFields):
     Records: List[SNSRecord]

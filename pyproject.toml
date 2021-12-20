@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aws-lambda-utils-python"
-version = "1.0.1"
+version = "2.0.0"
 description = ""
 authors = ["nichmorgan-loft <nich.morgan@loft.com.br>"]
 packages = [{ include = "aws_lambda_utils" }]

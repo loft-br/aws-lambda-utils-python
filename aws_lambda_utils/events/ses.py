@@ -1,16 +1,13 @@
-from dataclasses import dataclass
 from typing import List
 from datetime import datetime
-from aws_lambda_utils import BaseOptionalDataClass
+from aws_lambda_utils import BaseModelOptionalFields
 
 
-@dataclass
-class SimpleEmailVerdict:
+class SimpleEmailVerdict(BaseModelOptionalFields):
     Status: str
 
 
-@dataclass
-class SimpleEmailCommonHeaders(BaseOptionalDataClass):
+class SimpleEmailCommonHeaders(BaseModelOptionalFields):
     From: List[str]
     To: List[str]
     ReturnPath: str
@@ -19,19 +16,16 @@ class SimpleEmailCommonHeaders(BaseOptionalDataClass):
     Subject: str
 
 
-@dataclass
-class SimpleEmailHeader(BaseOptionalDataClass):
+class SimpleEmailHeader(BaseModelOptionalFields):
     Name: str
     Value: str
 
 
-@dataclass
-class ReceiptAction(BaseOptionalDataClass):
+class ReceiptAction(BaseModelOptionalFields):
     Type: str
 
 
-@dataclass
-class SimpleEmailReceipt(BaseOptionalDataClass):
+class SimpleEmailReceipt(BaseModelOptionalFields):
     Recipients: List[str]
     Timestamp: datetime
     SpamVerdict: SimpleEmailVerdict
@@ -43,8 +37,7 @@ class SimpleEmailReceipt(BaseOptionalDataClass):
     ProcessingTimeMillis: int
 
 
-@dataclass
-class SimpleEmailMessage(BaseOptionalDataClass):
+class SimpleEmailMessage(BaseModelOptionalFields):
     CommonHeaders: SimpleEmailCommonHeaders
     Source: str
     Timestamp: datetime
@@ -54,19 +47,16 @@ class SimpleEmailMessage(BaseOptionalDataClass):
     MessageId: str
 
 
-@dataclass
-class SimpleEmailService(BaseOptionalDataClass):
+class SimpleEmailService(BaseModelOptionalFields):
     Mail: SimpleEmailMessage
     Receipt: SimpleEmailReceipt
 
 
-@dataclass
-class SimpleEmailRecord(BaseOptionalDataClass):
+class SimpleEmailRecord(BaseModelOptionalFields):
     EventVersion: str
     EventSource: str
     Ses: SimpleEmailService
 
 
-@dataclass
-class SimpleEmailEvent(BaseOptionalDataClass):
+class SimpleEmailEvent(BaseModelOptionalFields):
     Records: List[SimpleEmailRecord]

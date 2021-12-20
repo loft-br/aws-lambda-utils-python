@@ -1,23 +1,23 @@
 from dataclasses import dataclass
 from typing import Dict, List, Sequence
-from aws_lambda_utils import BaseOptionalDataClass
+from aws_lambda_utils import BaseModelOptionalFields
 
 
 @dataclass
-class JwtDescription(BaseOptionalDataClass):
+class JwtDescription(BaseModelOptionalFields):
     Claims: Dict[str, str]
     Scopes: Sequence[str]
 
 
 @dataclass
-class CognitoIdentityDescription(BaseOptionalDataClass):
+class CognitoIdentityDescription(BaseModelOptionalFields):
     AMR: List[str]
     IdentityId: str
     IdentityPoolId: str
 
 
 @dataclass
-class IAMDescription(BaseOptionalDataClass):
+class IAMDescription(BaseModelOptionalFields):
     AccessKey: str
     AccountId: str
     CallerId: str
@@ -28,14 +28,14 @@ class IAMDescription(BaseOptionalDataClass):
 
 
 @dataclass
-class AuthorizerDescription(BaseOptionalDataClass):
+class AuthorizerDescription(BaseModelOptionalFields):
     Jwt: JwtDescription
     Lambda: Dict[str, str]
     IAM: IAMDescription
 
 
 @dataclass
-class HttpDescription(BaseOptionalDataClass):
+class HttpDescription(BaseModelOptionalFields):
     Method: str
     Path: str
     Protocol: str
@@ -44,13 +44,13 @@ class HttpDescription(BaseOptionalDataClass):
 
 
 @dataclass
-class ClientCertValidity(BaseOptionalDataClass):
+class ClientCertValidity(BaseModelOptionalFields):
     NotBefore: str
     NotAfter: str
 
 
 @dataclass
-class ProxyRequestClientCert(BaseOptionalDataClass):
+class ProxyRequestClientCert(BaseModelOptionalFields):
     ClientCertPem: str
     SubjectDN: str
     IssuerDN: str
@@ -59,12 +59,12 @@ class ProxyRequestClientCert(BaseOptionalDataClass):
 
 
 @dataclass
-class ProxyRequestAuthentication(BaseOptionalDataClass):
+class ProxyRequestAuthentication(BaseModelOptionalFields):
     ClientCert: ProxyRequestClientCert
 
 
 @dataclass
-class ProxyRequestContext(BaseOptionalDataClass):
+class ProxyRequestContext(BaseModelOptionalFields):
     AccountId: str
     ApiId: str
     Authorizer: AuthorizerDescription
@@ -81,7 +81,7 @@ class ProxyRequestContext(BaseOptionalDataClass):
 
 
 @dataclass
-class APIGatewayHttpApiV2ProxyRequest(BaseOptionalDataClass):
+class APIGatewayHttpApiV2ProxyRequest(BaseModelOptionalFields):
     Version: str
     RouteKey: str
     RawPath: str
