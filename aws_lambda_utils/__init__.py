@@ -1,11 +1,19 @@
-from pydantic import BaseModel
-import typing
+from pydantic import BaseModel, root_validator
+from typing import Optional
+import pydantic
 
 
-class BaseModelOptionalFields(BaseModel):
-    def __init_subclass__(cls, *args, **kwargs) -> None:
-        for field, value in cls.__annotations__.items():
-            cls.__annotations__[field] = typing.Optional[value]
-            if not hasattr(cls, field):
-                setattr(cls, field, None)
-        super().__init_subclass__(*args, **kwargs)
+class AllOptional(pydantic.main.ModelMetaclass):
+    def __new__(self, name, bases, namespaces, **kwargs):
+        annotations = namespaces.get("__annotations__", {})
+        for base in bases:
+            annotations.update(base.__annotations__)
+        for field in annotations:
+            if not field.startswith("__"):
+                annotations[field] = Optional[annotations[field]]
+        namespaces["__annotations__"] = annotations
+        return super().__new__(self, name, bases, namespaces, **kwargs)
+
+
+class BaseModelOptionalFields(BaseModel, metaclass=AllOptional):
+    ...
