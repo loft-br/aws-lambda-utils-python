@@ -1,9 +1,8 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 import typing
 
 
-@dataclass
-class BaseOptionalDataClass:
+class BaseModelOptionalFields(BaseModel):
     def __init_subclass__(cls, *args, **kwargs) -> None:
         for field, value in cls.__annotations__.items():
             cls.__annotations__[field] = typing.Optional[value]

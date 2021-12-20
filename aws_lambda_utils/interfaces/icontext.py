@@ -1,17 +1,14 @@
 from abc import ABC, abstractmethod
 from typing import Dict
-from dataclasses import dataclass
-from aws_lambda_utils import BaseOptionalDataClass
+from aws_lambda_utils import BaseModelOptionalFields
 
 
-@dataclass
-class Identity(BaseOptionalDataClass):
+class Identity(BaseModelOptionalFields):
     cognito_identity_id: str
     cognito_identity_pool_id: str
 
 
-@dataclass
-class Client(BaseOptionalDataClass):
+class Client(BaseModelOptionalFields):
     installation_id: str
     app_title: str
     app_version_name: str
@@ -21,13 +18,11 @@ class Client(BaseOptionalDataClass):
     env: Dict[str, str]
 
 
-@dataclass
-class ClientContext(BaseOptionalDataClass):
+class ClientContext(BaseModelOptionalFields):
     client: Client
 
 
-@dataclass
-class IContextData(BaseOptionalDataClass):
+class IContextData(BaseModelOptionalFields):
     function_name: str
     function_version: str
     invoked_function_arn: str

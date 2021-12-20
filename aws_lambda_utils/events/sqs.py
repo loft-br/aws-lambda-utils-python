@@ -1,11 +1,9 @@
-from dataclasses import dataclass
 from typing import Dict, List
 from mypy_boto3_sqs.type_defs import MessageAttributeValueTypeDef
-from aws_lambda_utils import BaseOptionalDataClass
+from aws_lambda_utils import BaseModelOptionalFields
 
 
-@dataclass
-class SQSRecord(BaseOptionalDataClass):
+class SQSRecord(BaseModelOptionalFields):
     messageId: str
     receiptHandle: str
     body: str
@@ -18,6 +16,5 @@ class SQSRecord(BaseOptionalDataClass):
     messageAttributes: Dict[str, MessageAttributeValueTypeDef]
 
 
-@dataclass
-class SQSEvent(BaseOptionalDataClass):
+class SQSEvent(BaseModelOptionalFields):
     Records: List[SQSRecord]

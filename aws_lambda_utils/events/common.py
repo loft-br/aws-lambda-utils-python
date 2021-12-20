@@ -1,7 +1,6 @@
-from dataclasses import dataclass
+from aws_lambda_utils import BaseModelOptionalFields
 
 
-@dataclass
-class MessageAttribute:
+class MessageAttribute(BaseModelOptionalFields):
     Type: str
     Value: str
