@@ -1,9 +1,9 @@
-from dataclasses import dataclass
 from typing import Dict, Sequence
 
+from aws_lambda_utils import BaseModelOptionalFields
 
-@dataclass
-class APIGatewayHttpApiV2ProxyResponse:
+
+class APIGatewayHttpApiV2ProxyResponse(BaseModelOptionalFields):
     StatusCode: int
     Headers: Dict[str, str]
     Cookies: Sequence[str]
