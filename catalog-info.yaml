@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: aws-lambda-utils-python
+  description: A description about this project
+spec:
+  type: unknown
+  owner: group:group-finance-innovation
+  lifecycle: production
